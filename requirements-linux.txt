@@ -1,0 +1,10 @@
+# Python dependencies for Linux deployment of project 2
+# Install with: pip install -r requirements-linux.txt
+
+numpy>=1.24
+scipy>=1.10
+opencv-python-headless>=4.8
+trimesh>=4.0
+pyrender>=0.1.45
+PyOpenGL>=3.1.0
+pyglet<2

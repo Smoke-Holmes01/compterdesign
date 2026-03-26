@@ -1,0 +1,32 @@
+Linux deployment notes for project 2
+
+1. Recommended Python version
+python 3.10 to 3.12
+
+2. Install system packages first
+Ubuntu or Debian:
+sudo apt update
+sudo apt install -y python3-pip python3-venv libgl1 libglib2.0-0 libegl1 libosmesa6
+
+3. Install Python dependencies
+pip install -r requirements-linux.txt
+
+4. Headless rendering note
+This project uses pyrender OffscreenRenderer in render_obj_views.py.
+On Linux servers without a desktop environment, OpenGL context issues are common.
+If EGL works on your machine, run:
+export PYOPENGL_PLATFORM=egl
+
+If EGL does not work, try:
+export PYOPENGL_PLATFORM=osmesa
+
+5. Run the project
+python main.py
+
+6. If rendering fails
+Typical errors are related to OpenGL, EGL, OSMesa, or missing display support.
+Priority order to try:
+- confirm libgl1, libegl1, libosmesa6 are installed
+- set PYOPENGL_PLATFORM=egl
+- if still failing, set PYOPENGL_PLATFORM=osmesa
+- then rerun python main.py
