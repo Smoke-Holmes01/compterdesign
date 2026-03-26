@@ -3,3 +3,9 @@ __pycache__/
 *.pyc
 
 outputs/
+data/
+
+# Optional local archives or temporary artifacts
+*.zip
+*.tar
+*.tar.gz
