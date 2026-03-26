@@ -1,6 +1,10 @@
 import os
 import json
 import math
+
+if "PYOPENGL_PLATFORM" not in os.environ and not os.getenv("DISPLAY"):
+    os.environ["PYOPENGL_PLATFORM"] = "egl"
+
 import cv2
 import trimesh
 import numpy as np
@@ -169,6 +173,12 @@ def render_all_models(model_dir: str, output_root: str,
                       azimuth_list=None, elevation_list=None,
                       image_size=512, distance=2.5):
     ensure_dir(output_root)
+
+    print(
+        "Render backend:"
+        f" PYOPENGL_PLATFORM={os.getenv('PYOPENGL_PLATFORM', 'default')}"
+        f" DISPLAY={os.getenv('DISPLAY') or 'none'}"
+    )
 
     if not os.path.exists(model_dir):
         raise FileNotFoundError(f"Model dir not found: {model_dir}")
